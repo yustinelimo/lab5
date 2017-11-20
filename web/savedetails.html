@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Student_registration_form</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <form name="studentform" action="SaveDetails" method="POST">
+            
+            <!--FORM CONTROLS COME HERE-->
+            Student Number:
+            <input type="number" required name="id"/>
+            <br><br>
+            First name:
+            <input type="text" required name="fname"/>
+            <br><br>
+            Last name:
+            <input type="text" required name="lname"/>
+            <br><br>
+            Gender:
+            <input type="radio" required name="gender" value="M"/>Male
+            <input type="radio" required name="gender" value="F"/>Female
+            <br><br>
+            Program:
+            <select name="program" required>
+                <option value="">--Select program--</option>
+                <option value="BBIT">Business Information Technology</option>
+                <option value="BCOM">Bachelor of Commerce</option>
+                <option value="MCOM">Masters of Commerce</option>
+                <option value="BIS">Bachelor of Arts International studies</option>
+                <option value="EE">Electrical Engineering</option>
+                <option value="BICS">Bachelor of Science in Informatics & Computer Science</option>
+                <option value="BSC">Tourism Management</option>
+                <option value="BBL">Bachelor of Laws</option>
+                <option value="DBM">Diploma in Business Management</option>
+                <option value="BBL">Masters in Business Administration</option>
+            </select>
+            <!--- Now it is time we create a button that will be clicked
+            to submit our form to the server--->
+            <br><br>
+            <input type="submit" value="save" name="Register"/>
+        </form>
+          
+    </body>
+</html>
