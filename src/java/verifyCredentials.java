@@ -41,9 +41,7 @@ public class verifyCredentials extends HttpServlet {
                 cops.setFname(password);
                 boolean success = cops.checkRecord(id);
                 if (success == true){
-                    out.println("Record found!");
-                    
-                    
+                   response.sendRedirect("savedetails.html");
                 }else{
                     out.println("Record does not exists on this system, try again");
                 }

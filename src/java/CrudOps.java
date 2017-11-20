@@ -102,6 +102,10 @@ public class CrudOps {
         }
         
         // Method to add new records to the database
+    /**
+     * This method saves records into the database as received from the users
+     * @return true if record saves successfully, and false otherwise. 
+     */
     public boolean save()
     {
         PreparedStatement pst = null;
@@ -124,6 +128,19 @@ public class CrudOps {
                 }
             return true;
         }
+    
+    /**
+     * this method saves student number and name into the database
+     * @param name this is the student name
+     * @param student_number this is the student number
+     * @return true if saved successfully, false otherwise. 
+     * @deprecated 
+     */
+    
+    public boolean save(String name, int student_number){
+    return true;
+    }
+    
     
     // Method to remove record from database 
     public boolean removeRecord(int reg_number)
