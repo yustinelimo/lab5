@@ -7,6 +7,7 @@
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,7 +17,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author badi
  */
-public class verifyCredentials extends HttpServlet {
+@WebServlet(urlPatterns = {"/LogoutServlet"})
+public class LogoutServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,27 +34,10 @@ public class verifyCredentials extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            //out.println("<!DOCTYPE html>");
-            
-            int id = Integer.parseInt(request.getParameter("id"));
-            String password = request.getParameter("password");
-            
-            CrudOps cops = new CrudOps();
-                cops.setStudentID(id);
-                cops.setFname(password);
-                boolean success = cops.checkRecord(id);
-                if (success == true){
-                
-                HttpSession session=request.getSession();
-                String n=request.getParameter("fname");  
-                out.print("Welcome " + n + " :) <br> <br>"); 
-                session=request.getSession();  
-                session.setAttribute("uname", n);  
-                out.print("What would you like to do today: <br><br> <a href='edituser.html'> edit record </a> | <a href='savedetails.html'> add record </a>"); 
-                
-                }else{
-                    out.println("Record does not exists on this system, try again");
-                }
+            HttpSession session=request.getSession();  
+            session.invalidate();  
+            out.print("You are successfully logged out!");  
+            out.close();
         }
     }
 
@@ -69,8 +54,6 @@ public class verifyCredentials extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        
-        
     }
 
     /**

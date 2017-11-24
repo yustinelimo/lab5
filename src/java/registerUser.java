@@ -7,16 +7,17 @@
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author badi
  */
-public class verifyCredentials extends HttpServlet {
+@WebServlet(urlPatterns = {"/registerUser"})
+public class registerUser extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,25 +34,19 @@ public class verifyCredentials extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             //out.println("<!DOCTYPE html>");
-            
             int id = Integer.parseInt(request.getParameter("id"));
-            String password = request.getParameter("password");
+            String passwd = request.getParameter("passwd");
             
             CrudOps cops = new CrudOps();
                 cops.setStudentID(id);
-                cops.setFname(password);
-                boolean success = cops.checkRecord(id);
+                cops.setPasswd(passwd);
+                boolean success = cops.register();
+                out.println(success);
                 if (success == true){
-                
-                HttpSession session=request.getSession();
-                String n=request.getParameter("fname");  
-                out.print("Welcome " + n + " :) <br> <br>"); 
-                session=request.getSession();  
-                session.setAttribute("uname", n);  
-                out.print("What would you like to do today: <br><br> <a href='edituser.html'> edit record </a> | <a href='savedetails.html'> add record </a>"); 
-                
+                    out.println("You have been registered successfully. You can now proceed to login page");
+                    request.getRequestDispatcher("login.html").include(request, response);  
                 }else{
-                    out.println("Record does not exists on this system, try again");
+                    out.println("Sorry! we could not register you at the moment. Please try again");
                 }
         }
     }
@@ -69,8 +64,6 @@ public class verifyCredentials extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        
-        
     }
 
     /**

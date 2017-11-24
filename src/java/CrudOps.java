@@ -16,7 +16,7 @@ import java.sql.SQLException;
  */
 public class CrudOps {
         private int studentID;
-    private String fname, lname, degree, gender ;
+    private String fname, lname, degree, gender, passwd ;
     
     // Setters
     public void setStudentID(int studentID) {
@@ -39,6 +39,10 @@ public class CrudOps {
         this.gender = gender;
     }
     
+    public void setPasswd(String passwd) {
+    this.passwd = passwd;
+    }
+    
     // Getters
     public int getStudentID() {
         return studentID;
@@ -58,6 +62,10 @@ public class CrudOps {
 
     public String getGender() {
         return gender;
+    }
+    
+    public String getPasswd() {
+        return passwd;
     }
 
             // Methods used to process gender from string to 
@@ -140,6 +148,26 @@ public class CrudOps {
     public boolean save(String name, int student_number){
     return true;
     }
+    
+       public boolean register()
+    {
+        PreparedStatement pst = null;
+        Connection con = new ConnectingTo().connector();
+        
+        try{
+               
+            pst = con.prepareStatement("INSERT INTO login_details VALUES(?,?)");
+                pst.setInt(1,getStudentID());
+                pst.setString(2,getPasswd());
+                pst.executeUpdate();
+                con.commit();
+           
+            }catch(SQLException sqle)
+                {
+                return false;
+                }
+            return true;
+        }
     
     
     // Method to remove record from database 
