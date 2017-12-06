@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author badi
+ * @author ken
  */
 @WebServlet(urlPatterns = {"/registerUser"})
 public class registerUser extends HttpServlet {
@@ -32,21 +32,20 @@ public class registerUser extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            //out.println("<!DOCTYPE html>");
+            
             int id = Integer.parseInt(request.getParameter("id"));
             String passwd = request.getParameter("passwd");
             
-            CrudOps cops = new CrudOps();
-                cops.setStudentID(id);
-                cops.setPasswd(passwd);
-                boolean success = cops.register();
+            CrudOps ops = new CrudOps();
+                ops.setStudentID(id);
+                ops.setPasswd(passwd);
+                boolean success = ops.register();
                 out.println(success);
                 if (success == true){
-                    out.println("You have been registered successfully. You can now proceed to login page");
+                    out.println("You have been registered successfully. You can now login to your account");
                     request.getRequestDispatcher("login.html").include(request, response);  
                 }else{
-                    out.println("Sorry! we could not register you at the moment. Please try again");
+                    out.println("Sorry! you are not registered");
                 }
         }
     }

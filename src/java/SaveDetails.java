@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author badi
+ * @author ken
  */
 public class SaveDetails extends HttpServlet {
 
@@ -30,21 +30,20 @@ public class SaveDetails extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            //out.println("<!DOCTYPE html>");
+            
             int id = Integer.parseInt(request.getParameter("id"));
             String f_name = request.getParameter("fname");
             String l_name = request.getParameter("lname");
             String gender = request.getParameter("gender");
             String program = request.getParameter("program");
             
-            CrudOps cops = new CrudOps();
-                cops.setStudentID(id);
-                cops.setFname(f_name);
-                cops.setLname(l_name);
-                cops.setGender(gender);
-                cops.setDegree(program);
-                boolean success = cops.save();
+            CrudOps ops = new CrudOps();
+                ops.setStudentID(id);
+                ops.setFname(f_name);
+                ops.setLname(l_name);
+                ops.setGender(gender);
+                ops.setDegree(program);
+                boolean success = ops.save();
                 if (success == true){
                     out.println("Record saved!");
                 }else{

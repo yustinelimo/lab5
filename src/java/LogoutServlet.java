@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author badi
+ * @author ken
  */
 @WebServlet(urlPatterns = {"/LogoutServlet"})
 public class LogoutServlet extends HttpServlet {
@@ -33,7 +33,6 @@ public class LogoutServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
             HttpSession session=request.getSession();  
             session.invalidate();  
             out.print("You are successfully logged out!");  

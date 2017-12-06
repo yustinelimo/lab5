@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 /**
  *
- * @author badi
+ * @author ken
  */
 public class DBConnector {
     public  static Scanner scanner = new Scanner(System.in);
@@ -26,57 +26,13 @@ public class DBConnector {
      */
     public static void main(String[] args) throws SQLException {
         
-        CrudOps cop = new CrudOps();
-//        System.out.println("Please select what you\nwant to do. Reply with:\n"
-//                + "(case sensitive)\nA. To add a new record\nD. "
-//                + "To delete/remove a record\nU. To update a record");
-//            choice = scanner.next().trim().charAt(0);
-//            switch (choice){
-//                
-//                case 'A':
-//                getDets();
-//                break;
-//                
-//                case 'D':
-//                System.out.println("Please enter student's ID Number to be deleted:");
-//                studentId = scanner.nextInt();
-//                cop.setStudentID(studentId);
-//                boolean commit = cop.archiveRecord(studentId);
-//                
-//                // if archiving returns false, we do not proceed to delete the record, 
-//                // since the trasactoin will not be autonomous 
-//                
-//                if (commit){                        
-//                        cop.removeRecord(studentId);
-//                    }
-//            break;
-//                
-//                case 'U':
-//                System.out.println("Please enter student's ID number to be updated:");
-//                studentId = scanner.nextInt();
-//                cop.setStudentID(studentId);
-//                
-//                // Before we update the record, we shall archive it in the old table
-//                
-//                commit = cop.archiveRecord(studentId);
-//                // if archiving returns false, we do not proceed to update, 
-//                //since the trasactoin will nt be autonomous 
-//                
-//                    if (commit){
-//                        cop.updateRecord();
-//                    }
-//                    //System.out.println("Something went wrong while updating student details");
-//                break;
-//                
-//            default:
-//                System.out.print("Invalid  option.\n");
-//                break;
-//        }
+        CrudOps ops = new CrudOps();
+
     }
     
     // Method used to get the details of a new student to add to the database. 
     
-    static void getDets() {
+    static void getDetails() {
 
         System.out.println("Please enter student's ID Number: ");
         studentId = scanner.nextInt();
@@ -114,7 +70,7 @@ public class DBConnector {
                     break;
                 case 'N':
                     System.out.println("You chose to continue adding new students");
-                    getDets();
+                    getDetails();
                     break;
                 default:
                     System.out.print("Invalid  option.\n");

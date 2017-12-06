@@ -12,7 +12,7 @@ import java.sql.SQLException;
 
 /**
  *
- * @author badi
+ * @author ken
  */
 public class CrudOps {
         private int studentID;
@@ -68,8 +68,8 @@ public class CrudOps {
         return passwd;
     }
 
-            // Methods used to process gender from string to 
-            // integer and vice versa
+            /*Method used to process gender from string to 
+             integer and vice versa*/
     
         public int processGender(String g){
                if (g.equalsIgnoreCase("M")){
@@ -84,12 +84,12 @@ public class CrudOps {
                 }return "Female";
         }
     
-        //method to verify users on login
+        //method to verify users credentials when they login
     public boolean checkRecord(int reg_number) {
         ResultSet rs = null; 
         PreparedStatement pst = null;
         Connection con = new ConnectingTo().connector();
-    // Check that the record exists
+    // Checks that the users record exists
         try{
         
         pst = con.prepareStatement("SELECT * FROM student_details WHERE student_id = ?");
@@ -112,7 +112,7 @@ public class CrudOps {
         // Method to add new records to the database
     /**
      * This method saves records into the database as received from the users
-     * @return true if record saves successfully, and false otherwise. 
+     * @return true if record saves successfully, and false when save is not succesfull 
      */
     public boolean save()
     {
@@ -140,8 +140,8 @@ public class CrudOps {
     /**
      * this method saves student number and name into the database
      * @param name this is the student name
-     * @param student_number this is the student number
-     * @return true if saved successfully, false otherwise. 
+     * @param student_number  is the student number
+     * @return true if saved successfully, false if the process is not successful. 
      * @deprecated 
      */
     
@@ -170,7 +170,7 @@ public class CrudOps {
         }
     
     
-    // Method to remove record from database 
+    // Method to remove a particular record from database 
     public boolean removeRecord(int reg_number)
         {
         
@@ -204,7 +204,7 @@ public class CrudOps {
         PreparedStatement pst = null;
         Connection con = new ConnectingTo().connector();
         
-        // Check that the record exists
+        // Check that the particular record exists
         try{
         
         pst = con.prepareStatement("SELECT * FROM student_details WHERE student_id = ?");
@@ -270,7 +270,7 @@ public class CrudOps {
                     default:
                         System.out.println("Invalid parameter selected");
                     }
-        // Commit your changes, otherwise they will not be stored on the database
+        // Commit your changes to database and saves them
                     con.commit();
         }
         else{
@@ -284,7 +284,7 @@ public class CrudOps {
         }
     
     // Archiving a record. This method is used for delete and update operations
-    // since we would still like to have the previous data stored for future reference. 
+     
     
     
     public boolean archiveRecord(int reg_number) {

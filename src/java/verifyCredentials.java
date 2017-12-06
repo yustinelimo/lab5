@@ -37,10 +37,10 @@ public class verifyCredentials extends HttpServlet {
             int id = Integer.parseInt(request.getParameter("id"));
             String password = request.getParameter("password");
             
-            CrudOps cops = new CrudOps();
-                cops.setStudentID(id);
-                cops.setFname(password);
-                boolean success = cops.checkRecord(id);
+            CrudOps ops = new CrudOps();
+                ops.setStudentID(id);
+                ops.setFname(password);
+                boolean success = ops.checkRecord(id);
                 if (success == true){
                 
                 HttpSession session=request.getSession();
@@ -48,10 +48,10 @@ public class verifyCredentials extends HttpServlet {
                 out.print("Welcome " + n + " :) <br> <br>"); 
                 session=request.getSession();  
                 session.setAttribute("uname", n);  
-                out.print("What would you like to do today: <br><br> <a href='edituser.html'> edit record </a> | <a href='savedetails.html'> add record </a>"); 
+                out.print("please choose an option: <br><br> <a href='edituser.html'> edit record </a> | <a href='savedetails.html'> add record </a>"); 
                 
                 }else{
-                    out.println("Record does not exists on this system, try again");
+                    out.println("Record does not exists please try with an existing one");
                 }
         }
     }
