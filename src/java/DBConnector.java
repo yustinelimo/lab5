@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 /**
  *
- * @author ken
+ * @author lenovo
  */
 public class DBConnector {
     public  static Scanner scanner = new Scanner(System.in);

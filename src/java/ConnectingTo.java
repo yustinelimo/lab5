@@ -11,7 +11,7 @@ import java.sql.SQLException;
 
 /**
  *
- * @author ken
+ * @author lenovo
  */
 public class ConnectingTo {
     private Connection con = null;

@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author ken
+ * @author lenovo
  */
 public class verifyCredentials extends HttpServlet {
 
